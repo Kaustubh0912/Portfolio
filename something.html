@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #61dafb;
+            --secondary-color: #569af2;
+            --text-color: #e0e0e0;
+            --bg-color: #121212;
+            
+            --header-height: 100px;
+        }
+
+        .dark-mode {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            height: var(--header-height);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--primary-color);
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .header-text {
+            text-align: right;
+        }
+
+        nav {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem 1rem;
+            position: sticky;
+            top: var(--header-height);
+            width: 100%;
+            z-index: 999;
+            backdrop-filter: blur(10px);
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav ul li {
+            margin: 0 1rem;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 4rem 0;
+            margin: 2rem 0;
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            padding-top: calc(var(--header-height) + 2rem);
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .skills {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .skills-list {
+            flex: 1;
+        }
+
+        .skills-list ul {
+            list-style-type: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skills-list li {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .skills-description {
+            flex: 1;
+        }
+
+        .projects {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .project {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .zigzag-left {
+            flex-direction: row;
+        }
+
+        .zigzag-right {
+            flex-direction: row-reverse;
+        }
+
+        .project video {
+            width: 100%;
+            height: auto;
+            max-width: 600px;
+            border-radius: 10px;
+        }
+
+        .project-content {
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .project {
+                flex-direction: column;
+            }
+
+            .zigzag-left,
+            .zigzag-right {
+                flex-direction: column;
+            }
+
+            .project video {
+                max-width: 100%;
+            }
+        }
+
+        .experience {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .links {
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            width: 64px;
+            height: 64px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--secondary-color);
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+        }
+
+        .contact-form button {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        @media (max-width: 768px) {
+            .hero, .skills {
+                flex-direction: column;
+            }
+
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header-text {
+                text-align: center;
+                margin-top: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+        }
+
+        .logos {
+            background-color: var(--base-100);
+            border-radius: 30px;
+            padding: 30px 0px;
+        }
+
+        .marquee {
+            width: 100vw;
+            max-width: 100%;
+            height: 128px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .track {
+            position: absolute;
+            white-space: nowrap;
+            will-change: transform;
+            animation: marquee 40s linear infinite;
+            display: flex;
+            gap: 10px;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="profile-pic">
+                <img src="./imgs/me.jpg" alt="Kaustubh Agrawal">
+            </div>
+            <div class="header-text">
+                <h1>Kaustubh Agrawal</h1>
+                <p>Frontend Developer | Aspiring Fullstack Developer</p>
+            </div>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <section id="home" class="hero container">
+        <div class="hero-content">
+            <h2>Welcome to My Portfolio!</h2>
+            <p>Hello! I'm Kaustubh Agrawal, a passionate frontend developer with a keen interest in expanding my skills to become a fullstack developer.</p>
+            <a href="#contact" class="button">Get In Touch</a>
+        </div>
+        <div class="hero-image">
+            <img src="./imgs/me.jpg" alt="Hero Image">
+        </div>
+    </section>
+    <section id="about" class="container">
+        <h2>About Me</h2>
+        <p>I have a passion for creating engaging and interactive user experiences. With a strong background in HTML, CSS, and JavaScript, I strive to build visually appealing and functional websites.</p>
+        <p>My journey into web development started with a curiosity to understand how websites work and has evolved into a career where I constantly seek to learn new technologies and improve my skills.</p>
+    </section>
+    <section id="skills" class="container">
+        <h2>Skills</h2>
+        <div class="skills">
+            <div class="skills-list">
+                <h3>Technical Skills</h3>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                    <li>React</li>
+                    <li>Node.js</li>
+                    <li>Git</li>
+                    <li>Webpack</li>
+                </ul>
+            </div>
+            <div class="skills-description">
+                <h3>Experience with:</h3>
+                <p>I have experience working on various projects, ranging from small business websites to larger web applications. My primary focus is on creating responsive, user-friendly, and accessible websites.</p>
+            </div>
+        </div>
+    </section>
+    <section id="projects" class="container">
+        <h2>Projects</h2>
+        <div class="projects">
+            <div class="project zigzag-left">
+                <video src="./vids/MovieMaster.mp4" controls></video>
+                <div class="project-content">
+                    <h3>MovieMaster</h3>
+                    <p>MovieMaster is a web application that allows users to search for movies, view details, and read reviews. It is built using React and the OMDB API.</p>
+                    <a href="#" class="button">View Project</a>
+                </div>
+            </div>
+            <div class="project zigzag-right">
+                <video src="./vids/MYol.mp4" controls></video>
+                <div class="project-content">
+                    <h3>MYol</h3>
+                    <p>MYol is a yoga and meditation website designed to help users find peace and relaxation through guided sessions. It features a modern and clean design, built with HTML, CSS, and JavaScript.</p>
+                    <a href="#" class="button">View Project</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="experience" class="container">
+        <h2>Experience</h2>
+        <div class="experience">
+            <div class="links">
+                <a href="#" title="GitHub">
+                    <i class="fab fa-github fa-2x"></i>
+                </a>
+            </div>
+            <div class="links">
+                <a href="#" title="LinkedIn">
+                    <i class="fab fa-linkedin fa-2x"></i>
+                </a>
+            </div>
+            <div class="links">
+                <a href="#" title="Twitter">
+                    <i class="fab fa-twitter fa-2x"></i>
+                </a>
+            </div>
+            <div class="links">
+                <a href="#" title="Facebook">
+                    <i class="fab fa-facebook fa-2x"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="container">
+        <h2>Contact Me</h2>
+        <form class="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+    <button class="dark-mode-toggle">Toggle Dark Mode</button>
+    <script>
+        const darkModeToggle = document.querySelector('.dark-mode-toggle');
+        const body = document.body;
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+        });
+    </script>
+</body>
+</html>
