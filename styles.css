@@ -59,7 +59,7 @@
             width: 100%;
             z-index: 999;
             backdrop-filter: blur(10px);
-            /* transition: all 0.3s ease; */
+            transition: all 0.3s ease;
         }
         .sticky {
             position: fixed;
